@@ -83,10 +83,8 @@ export default {
 
             // first I think I need to get my chord note count //
             let noteCountInChord = this.chord.length
-            console.log('Chord note count -> ', noteCountInChord)
-            for(var l in this.chord) {
-                console.log(this.chord[l].newNote)
-            }
+            console.log(noteCountInChord)
+            console.log('Chord -> ', this.chord)
         },
 
         figureOutRootNote() {

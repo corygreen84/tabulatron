@@ -55,10 +55,8 @@
 </template>
 
 <script>
-//import Tabulature1 from 'vue-music-notation/src/components/Tabulature.vue'
 export default {
     components: { 
-        //Tabulature1
     },
     data() {
         return {

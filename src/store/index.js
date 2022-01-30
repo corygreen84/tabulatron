@@ -10,11 +10,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         tuningsList: ['A','A♯/B♭','B','C','C♯/D♭','D','D♯/E♭','E','F','F♯/G♭','G','G♯/A♭'],
-        selectedTuning: 'A',
+        selectedTuning: 'E',
         overallTuningNotes: [],
         overallTuningIndexes: [],
         numberOfStringsList: [4,5,6,7,8,9],
-        seletectedNumberOfStrings: 4,
+        seletectedNumberOfStrings: 6,
         dropTuningEnabled: false,
         dropTuningDegreeList: [-5, -4, -3, -2, -1, 0],
         selectedDropTuning: 0,
