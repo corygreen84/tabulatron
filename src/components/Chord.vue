@@ -13,7 +13,8 @@ export default {
         return {
             chord: [],
             chordName: '',
-            currentTuning: []
+            currentTuning: [],
+            rootNote: null
         }
     },
     props: {    
@@ -84,11 +85,16 @@ export default {
             // first I think I need to get my chord note count //
             let noteCountInChord = this.chord.length
             console.log(noteCountInChord)
-            console.log('Chord -> ', this.chord)
+            // then I need to get the root note //
+            this.rootNote = this.figureOutRootNote()
+            console.log(this.rootNote.newNote)
         },
 
         figureOutRootNote() {
-            
+            this.chord.sort(function (a, b) {
+                return a.string - b.string;
+            })
+            return this.chord[this.chord.length - 1]
         }
     },
 }
