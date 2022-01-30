@@ -85,6 +85,7 @@ export default {
             // first I think I need to get my chord note count //
             let noteCountInChord = this.chord.length
             // then I need to get the root note //
+            console.log(noteCountInChord)
             this.rootNote = this.figureOutRootNote()
             switch (noteCountInChord) {
                 case 1: {
@@ -111,7 +112,23 @@ export default {
         },
 
         figureOutPowerChord() {
+            //let powerChordFormula = this.$store.state.powerChord.fifth
+            //let notes = this.$store.state.tuningsList
+            //let rootIndex = notes.indexOf(this.rootNote.newNote)
 
+            // for(var j in this.chord){
+            //     let noteIndex = this.notes.indexOf(this.chord[j])
+            //     for(var k in powerChordFormula) {
+            //         if(noteIndex === powerChordFormula[k]){
+
+            //         }
+            //     }
+            // }
+            
+            // console.log(powerChordFormula)
+            // console.log(notes)
+            // console.log(rootIndex)
+            //console.log(powerChordFormula)
         },
 
         figureOutTriads() {
