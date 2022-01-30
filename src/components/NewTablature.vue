@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <v-row class="pa-0">
-            <v-col cols="auto" v-for="(i, index) in 25" :key="index">
-                <v-container v-if="index === 0" class="pa-0 ">
+            <v-col cols="auto" v-for="(i, index) in 29" :key="index">
+                <v-container v-if="index === 0" class="pa-0">
                     <v-row v-for="(j, ind) in returnOverallTuning" :key="ind" style="width: 40px; height: 30px;">
                         <v-text-field class="centered-input" :value="j" readonly></v-text-field>
                     </v-row>
@@ -26,14 +26,13 @@ export default {
         figureDropTuning() {
             let notes = this.$store.state.tuningsList
             let selectedTuning = this.$store.state.selectedTuning
-            let dropTuned = this.$store.state.dropTuningEnabled
             let dropTunedDegree = this.$store.state.selectedDropTuning
 
             let currentTuningIndex = notes.indexOf(selectedTuning)
-            if(dropTuned) {
+            if(dropTunedDegree !== 0){
                 currentTuningIndex = notes.indexOf(selectedTuning) + dropTunedDegree
                 if(currentTuningIndex < 0) {
-                    currentTuningIndex = Math.abs(currentTuningIndex)
+                    currentTuningIndex = notes.length - Math.abs(currentTuningIndex)
                 }
             }
             // if not drop tuned then we just return the selected tuning without it //

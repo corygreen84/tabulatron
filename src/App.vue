@@ -1,10 +1,14 @@
 <template>
   <v-app>
     <v-main>
-      <v-container>
-      <TopOptions />
-      <NewTabulature />
-      </v-container>
+        <v-row class="pt-10">
+          <v-col cols="10">
+            <NewTabulature />
+          </v-col>
+          <v-col cols="2">
+            <TopOptions />
+          </v-col>
+        </v-row>
     </v-main>
   </v-app>
 </template>

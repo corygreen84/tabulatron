@@ -15,7 +15,6 @@ export default new Vuex.Store({
         overallTuningIndexes: [],
         numberOfStringsList: [4,5,6,7,8,9],
         seletectedNumberOfStrings: 6,
-        dropTuningEnabled: false,
         dropTuningDegreeList: [-5, -4, -3, -2, -1, 0],
         selectedDropTuning: 0,
         clearAll: false,
@@ -35,9 +34,6 @@ export default new Vuex.Store({
         },
         setSelectedNumberOfStrings(state, payload) {
             state.seletectedNumberOfStrings = payload
-        },
-        setDropTuningEnabled(state, payload) {
-            state.dropTuningEnabled = payload
         },
         setSelectedDropTuning(state, payload) {
             state.selectedDropTuning = payload
@@ -62,9 +58,6 @@ export default new Vuex.Store({
         },
         changeNumberOfStrings({commit}, status) {
             commit('setSelectedNumberOfStrings', status)
-        },
-        changeDropTuningEnabled({commit}, status) {
-            commit('setDropTuningEnabled', status)
         },
         changeDropTuning({commit}, status) {
             commit('setSelectedDropTuning', status)
