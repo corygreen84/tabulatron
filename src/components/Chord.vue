@@ -81,11 +81,10 @@ export default {
 
 
         analyzingNotes() {
-
-            // first I think I need to get my chord note count //
             let noteCountInChord = this.chord.length
-            // then I need to get the root note //
-            console.log(noteCountInChord)
+            if(noteCountInChord === 0){
+                this.chordName = ''
+            }
             this.rootNote = this.figureOutRootNote()
             switch (noteCountInChord) {
                 case 1: {
