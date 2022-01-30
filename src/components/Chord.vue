@@ -87,7 +87,9 @@ export default {
             console.log(noteCountInChord)
             // then I need to get the root note //
             this.rootNote = this.figureOutRootNote()
-            console.log(this.rootNote.newNote)
+            if(noteCountInChord === 1){
+                this.chordName = this.rootNote.newNote
+            }
         },
 
         figureOutRootNote() {
