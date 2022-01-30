@@ -84,12 +84,46 @@ export default {
 
             // first I think I need to get my chord note count //
             let noteCountInChord = this.chord.length
-            console.log(noteCountInChord)
             // then I need to get the root note //
             this.rootNote = this.figureOutRootNote()
-            if(noteCountInChord === 1){
-                this.chordName = this.rootNote.newNote
+            switch (noteCountInChord) {
+                case 1: {
+                    this.chordName = this.rootNote.newNote
+                    break
+                }
+                case 2: {
+                    this.chordName = this.figureOutPowerChord()
+                    break
+                }
+                case 3: {
+                    this.chordName = this.figureOutTriads()
+                    break
+                }
+                case 4: {
+                    this.chordName = this.figureOutSevenths()
+                    break
+                }
+                case 5: {
+                    this.chordName = this.figureOutExtended()
+                    break
+                }
             }
+        },
+
+        figureOutPowerChord() {
+
+        },
+
+        figureOutTriads() {
+
+        },
+
+        figureOutSevenths() {
+
+        },
+
+        figureOutExtended() {
+
         },
 
         figureOutRootNote() {
