@@ -1,9 +1,9 @@
 <template>
     <v-container>
         <v-row class="pa-0">
-            <v-col cols="auto" v-for="(i, index) in 29" :key="index">
+            <v-col cols="auto" v-for="(i, index) in 18" :key="index">
                 <v-container v-if="index === 0" class="pa-0">
-                    <v-row v-for="(j, ind) in returnOverallTuning" :key="ind" style="width: 40px; height: 30px;">
+                    <v-row v-for="(j, ind) in returnOverallTuning" :key="ind" style="width: 60px; height: 30px;">
                         <v-text-field class="centered-input" :value="j" readonly></v-text-field>
                     </v-row>
                 </v-container>

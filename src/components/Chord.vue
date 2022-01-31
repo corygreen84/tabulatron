@@ -1,6 +1,6 @@
 <template>
   <v-container class="pa-0">
-      <v-row v-for="(i, index) in getCurrentStringCount + 1" :key="index" style="width: 40px; height: 30px;">
+      <v-row v-for="(i, index) in getCurrentStringCount + 1" :key="index" style="width: 60px; height: 30px;">
           <v-text-field v-if="index === getCurrentStringCount" class="centered-input small-text-size" @input="tabEntered($event, i)" v-model="chordName"></v-text-field>
           <v-text-field v-else class="centered-input" @input="tabEntered($event, i)"></v-text-field>
       </v-row>
@@ -34,10 +34,14 @@ export default {
                     fret: $event,
                     string: i,
                     stringNote: this.getCurrentTuning()[i - 1],
-                    newNote: ''
+                    newNote: '',
+                    newNoteIndex: 0
                 }
                 let returnedNote = this.noteName(note)
                 note.newNote = returnedNote
+                
+                let returnedIndex = this.noteIndex(note.newNote)
+                note.newNoteIndex = returnedIndex
 
                 if(this.chord.length === 0){
                     this.chord.push(note)
@@ -74,74 +78,73 @@ export default {
             let actualNoteIndex = enteredNoteIndex % notes.length
             return notes[actualNoteIndex]
         },
-
-
-
-
-
+        noteIndex(note) {
+            let notes = this.$store.state.tuningsList
+            let index = notes.indexOf(note)
+            return index
+        },
 
         analyzingNotes() {
-            let noteCountInChord = this.chord.length
-            if(noteCountInChord === 0){
-                this.chordName = ''
-            }
             this.rootNote = this.figureOutRootNote()
-            switch (noteCountInChord) {
-                case 1: {
-                    this.chordName = this.rootNote.newNote
-                    break
+            let noteCountInChord = this.chord.length
+            let notes = this.$store.state.tuningsList
+            if(noteCountInChord === 0){
+                // zeroing out the chord name since nothing exists //
+                this.chordName = ''
+            }else if(noteCountInChord === 1){
+                // using the root note of the chord name if theres only one note present //
+                this.chordName = ''
+                this.chordName = this.rootNote.newNote
+            }else{
+                // if theres more than one note present, then we need to analyze the notes //
+                // need to create an array of intervals from the root note to all other notes //
+                this.chordName = ''
+                let noteIntervals = []
+                let rootNoteIndex = this.rootNote.newNoteIndex
+                for(var j in this.chord) {
+                    let distance
+                    if(rootNoteIndex === this.chord[j].newNoteIndex){
+                        distance = 0
+                    }else{
+                        let differenceBetweenRoot = notes.length - rootNoteIndex
+                        distance = differenceBetweenRoot + this.chord[j].newNoteIndex
+                        distance = distance % notes.length
+                    }
+                    noteIntervals.push(distance)
                 }
-                case 2: {
-                    this.chordName = this.figureOutPowerChord()
-                    break
+
+                // removing duplicate intervals //
+                let uniqueIntervals = noteIntervals.filter((c, index) => {
+                    return noteIntervals.indexOf(c) === index;
+                });
+
+                uniqueIntervals.sort(function(a, b) {
+                    return a - b;
+                });
+
+                // analyzing this pattern with our chord patterns //
+                let patternObject = this.$store.state.chordPatterns.patterns.patterns
+                let chordName = ''
+                switch(noteCountInChord){
+                    case 2: {
+                        console.log(patternObject.dyad)
+                        let dyadObject = patternObject.dyad
+                        for(var l in dyadObject){
+                            let dyad = JSON.stringify(dyadObject[l])
+                            let chordInterval = JSON.stringify(uniqueIntervals)
+                            if(dyad === chordInterval){
+                                chordName = l
+                                break
+                            }
+                        }
+                    }
                 }
-                case 3: {
-                    this.chordName = this.figureOutTriads()
-                    break
-                }
-                case 4: {
-                    this.chordName = this.figureOutSevenths()
-                    break
-                }
-                case 5: {
-                    this.chordName = this.figureOutExtended()
-                    break
-                }
+                //console.log(this.rootNote.newNote + ' ' + chordName)
+                this.chordName = this.rootNote.newNote + ' ' + chordName
+                
+                
             }
         },
-
-        figureOutPowerChord() {
-            //let powerChordFormula = this.$store.state.powerChord.fifth
-            //let notes = this.$store.state.tuningsList
-            //let rootIndex = notes.indexOf(this.rootNote.newNote)
-
-            // for(var j in this.chord){
-            //     let noteIndex = this.notes.indexOf(this.chord[j])
-            //     for(var k in powerChordFormula) {
-            //         if(noteIndex === powerChordFormula[k]){
-
-            //         }
-            //     }
-            // }
-            
-            // console.log(powerChordFormula)
-            // console.log(notes)
-            // console.log(rootIndex)
-            //console.log(powerChordFormula)
-        },
-
-        figureOutTriads() {
-
-        },
-
-        figureOutSevenths() {
-
-        },
-
-        figureOutExtended() {
-
-        },
-
         figureOutRootNote() {
             this.chord.sort(function (a, b) {
                 return a.string - b.string;
