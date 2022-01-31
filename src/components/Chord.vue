@@ -170,6 +170,10 @@ export default {
     }
     .rotated {
         transform: rotate(90deg);
+        
+    }
+    .rotated >>> .v-input__slot{
+        width: 150px;
     }
     .small-text-size {
         font-size: 10px;
