@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-0">
       <v-row v-for="(i, index) in getCurrentStringCount + 1" :key="index" style="width: 60px; height: 30px;">
-          <v-text-field v-if="index === getCurrentStringCount" class="centered-input small-text-size" @input="tabEntered($event, i)" v-model="chordName"></v-text-field>
+          <v-text-field v-if="index === getCurrentStringCount" outlined readonly hide-details="" class="centered-input small-text-size rotated ml-0 mt-5" @input="tabEntered($event, i)" v-model="chordName"></v-text-field>
           <v-text-field v-else class="centered-input" @input="tabEntered($event, i)"></v-text-field>
       </v-row>
   </v-container>
@@ -83,6 +83,12 @@ export default {
             let index = notes.indexOf(note)
             return index
         },
+        figureOutRootNote() {
+            this.chord.sort(function (a, b) {
+                return a.string - b.string;
+            })
+            return this.chord[this.chord.length - 1]
+        },
 
         analyzingNotes() {
             this.rootNote = this.figureOutRootNote()
@@ -135,12 +141,7 @@ export default {
                 this.chordName = this.rootNote.newNote + ' ' + chordName
             }
         },
-        figureOutRootNote() {
-            this.chord.sort(function (a, b) {
-                return a.string - b.string;
-            })
-            return this.chord[this.chord.length - 1]
-        }
+        
     },
 }
 </script>
@@ -165,14 +166,19 @@ export default {
 <style scoped>
     .centered-input >>> input{
         text-align: center; 
-        color: blue;
-        
+        color: white;
+    }
+    .rotated {
+        transform: rotate(90deg);
     }
     .small-text-size {
         font-size: 10px;
     }
+    .v-text-field >>> .v-input__slot:before {
+        border-style: none;
+    } 
     .v-text-field >>> .v-input__slot::before {
         padding-top: 17px;
-        border-color: white;
+        
     }
 </style>
