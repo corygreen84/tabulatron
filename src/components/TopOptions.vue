@@ -40,8 +40,11 @@
                   </v-list>
               </v-menu>
           </v-col>
-          <v-col>
-              <v-btn color="green" @click="clearAll">Clear All</v-btn>
+          <v-col cols="auto">
+              <v-btn color="green" @click="clearTab">Reset Tab</v-btn>
+          </v-col>
+          <v-col cols="auto">
+              <v-btn color="green" @click="clearAll">Reset All</v-btn>
           </v-col>
       </v-row>
   </v-container>
@@ -65,6 +68,9 @@ export default {
         },
         changeDropTuning(item) {
             this.$store.dispatch('changeDropTuning', item)
+        },
+        clearTab() {
+            console.log('clear tab hit')
         },
         clearAll() {
             this.$store.dispatch('clearAll', true)

@@ -2,7 +2,7 @@
   <v-container class="pa-0">
       <v-row v-for="(i, index) in getCurrentStringCount + 1" :key="index" style="width: 60px; height: 30px;">
           <v-text-field v-if="index === getCurrentStringCount" outlined readonly hide-details="" class="centered-input small-text-size rotated ml-0 mt-5" @input="tabEntered($event, i)" v-model="chordName"></v-text-field>
-          <v-text-field v-else class="centered-input" @input="tabEntered($event, i)"></v-text-field>
+          <v-text-field v-else class="centered-input text" :id="tabColumn + '+' + index" @input="tabEntered($event, i)"></v-text-field>
       </v-row>
   </v-container>
 </template>
@@ -26,6 +26,14 @@ export default {
         getCurrentStringCount() {
             return this.$store.state.seletectedNumberOfStrings
         },
+        clearAll() {
+            return this.$store.state.clearAll
+        }
+    },
+    watch: {
+        clearAll() {
+            window.location.reload()
+        }
     },
     methods: {
         tabEntered($event, i){
@@ -170,7 +178,6 @@ export default {
     }
     .rotated {
         transform: rotate(90deg);
-        
     }
     .rotated >>> .v-input__slot{
         width: 150px;

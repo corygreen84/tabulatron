@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import powerChord from './modules/powerChord'
-// import triads from './modules/triads'
-// import seventh from './modules/seventh'
-// import extended from './modules/extended'
 import chordPatterns from './modules/chordPatterns'
 
 Vue.use(Vuex)
