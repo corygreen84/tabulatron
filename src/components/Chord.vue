@@ -121,28 +121,36 @@ export default {
                 uniqueIntervals.sort(function(a, b) {
                     return a - b;
                 });
-
+                console.log(uniqueIntervals)
                 // analyzing this pattern with our chord patterns //
-                let patternObject = this.$store.state.chordPatterns.patterns.patterns
+                // let patternObject = this.$store.state.chordPatterns.patterns.patterns
+                // let chordName = ''
+                // switch(noteCountInChord){
+                //     case 2: {
+                //         let dyadObject = patternObject.dyad
+                //         for(var l in dyadObject){
+                //             let dyad = JSON.stringify(dyadObject[l])
+                //             let chordInterval = JSON.stringify(uniqueIntervals)
+                //             if(dyad === chordInterval){
+                //                 chordName = l
+                //                 break
+                //             }
+                //         }
+                //     }
+                // }
+                let allPatternObject = this.$store.state.chordPatterns.allPatterns
                 let chordName = ''
-                switch(noteCountInChord){
-                    case 2: {
-                        console.log(patternObject.dyad)
-                        let dyadObject = patternObject.dyad
-                        for(var l in dyadObject){
-                            let dyad = JSON.stringify(dyadObject[l])
-                            let chordInterval = JSON.stringify(uniqueIntervals)
-                            if(dyad === chordInterval){
-                                chordName = l
-                                break
-                            }
-                        }
+                for(var l in allPatternObject){
+                    let chordFormation = JSON.stringify(allPatternObject[l])
+                    let chordInterval = JSON.stringify(uniqueIntervals)
+                    console.log(chordFormation)
+                    console.log(chordInterval)
+                    if(chordFormation === chordInterval){
+                        chordName = l
+                        break
                     }
                 }
-                //console.log(this.rootNote.newNote + ' ' + chordName)
                 this.chordName = this.rootNote.newNote + ' ' + chordName
-                
-                
             }
         },
         figureOutRootNote() {
