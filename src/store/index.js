@@ -16,9 +16,7 @@ export default new Vuex.Store({
         selectedDropTuning: 0,
         clearAll: false,
         clearTab: false,
-
         columnCount: 0,
-
         // this is the main tab mapping array //
         mainTabMapping: []
     },
