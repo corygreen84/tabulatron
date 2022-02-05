@@ -1,8 +1,8 @@
 <template>
   <v-container class="pa-0">
       <v-row v-for="(i, index) in getCurrentStringCount + 1" :key="index" style="width: 60px; height: 30px;">
-          <v-text-field v-if="index === getCurrentStringCount" outlined readonly hide-details="" class="centered-input small-text-size rotated ml-0 mt-5" @input="tabEntered($event, i)" v-model="chordName"></v-text-field>
-          <v-text-field v-else class="centered-input text" :id="tabColumn + '+' + index" @input="tabEntered($event, i)"></v-text-field>
+          <v-text-field v-if="index === getCurrentStringCount" outlined readonly hide-details="" class="centered-input small-text-size rotated ml-0 mt-5" v-model="chordName"></v-text-field>
+          <v-text-field v-else :class="`centered-input ${tabColumn}`" v-model="arrayOfTabNotes[i]" @input="tabEntered($event, i)"></v-text-field>
       </v-row>
   </v-container>
 </template>
@@ -14,7 +14,8 @@ export default {
             chord: [],
             chordName: '',
             currentTuning: [],
-            rootNote: null
+            rootNote: null,
+            arrayOfTabNotes: []
         }
     },
     props: {    
@@ -26,15 +27,23 @@ export default {
         getCurrentStringCount() {
             return this.$store.state.seletectedNumberOfStrings
         },
-        // clearAll() {
-        //     return this.$store.state.clearAll
-        // }
+        clearTab() {
+            return this.$store.state.clearTab
+        }
     },
-    // watch: {
-    //     clearAll() {
-    //         window.location.reload()
-    //     }
-    // },
+    watch: {
+        clearTab() {
+            this.chord = []
+            this.currentTuning = []
+            this.rootNote = null
+            this.chordName = ''
+            this.arrayOfTabNotes = []
+
+            if(this.tabColumn === this.$store.state.columnCount) {
+                this.$store.dispatch('clearTab', false)
+            }
+        }
+    },
     methods: {
         tabEntered($event, i){
             if($event !== ''){

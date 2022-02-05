@@ -19,6 +19,14 @@ export default {
     components: {
         Chord
     },
+    data() {
+        return {
+            numberOfColumns: 18
+        }
+    },
+    mounted() {
+        this.$store.dispatch('changeColumnCount', this.numberOfColumns)
+    },
     computed: {
         clearAll() {
             return this.$store.state.clearAll

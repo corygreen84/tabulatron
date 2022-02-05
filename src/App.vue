@@ -27,12 +27,12 @@ export default {
   computed: {
     clearAll() {
         return this.$store.state.clearAll
-    }
+    },
   },
   watch: {
     clearAll() {
         window.location.reload()
-    }
+    },
   },
   data: () => ({
     //

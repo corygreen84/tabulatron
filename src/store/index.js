@@ -17,6 +17,8 @@ export default new Vuex.Store({
         clearAll: false,
         clearTab: false,
 
+        columnCount: 0,
+
         // this is the main tab mapping array //
         mainTabMapping: []
     },
@@ -39,11 +41,15 @@ export default new Vuex.Store({
         setTabMappingArray(state, payload) {
             state.mainTabMapping = payload
         },
-        clearTab(state, payload) {
+        setClearTab(state, payload) {
             state.clearTab = payload
         },
         clearAll(state, payload) {
             state.clearAll = payload
+        },
+
+        setNumberOfColumns(state, payload) {
+            state.columnCount = payload
         }
 
     },
@@ -66,11 +72,14 @@ export default new Vuex.Store({
         changeTabMapping({commit}, status) {
             commit('setTabMappingArray', status)
         },
-        clearTab({commit, status}) {
-            commit('clearTab', status)
+        clearTab({commit}, status) {
+            commit('setClearTab', status)
         },
         clearAll({commit}, status) {
             commit('clearAll', status)
+        },
+        changeColumnCount({commit}, status) {
+            commit('setNumberOfColumns', status)
         }
     },
     modules: {
