@@ -24,6 +24,16 @@ export default {
     TopOptions,
     NewTabulature,
   },
+  computed: {
+    clearAll() {
+        return this.$store.state.clearAll
+    }
+  },
+  watch: {
+    clearAll() {
+        window.location.reload()
+    }
+  },
   data: () => ({
     //
   }),

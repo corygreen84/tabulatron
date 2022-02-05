@@ -12,12 +12,12 @@ const state = {
         "Minor 7th": [0, 10],
         "Major 7th": [0, 11],
         "Perfect Octave": [0, 12],
-        "major": [0, 3, 5],
-        "augmented": [0, 3, 6],
-        "minor": [0, 2, 5],
-        "diminished": [0, 2, 4],
-        "sus4": [0, 4, 5],
-        "sus2": [0, 2, 5]
+        "Major": [0, 4, 7],
+        "Minor": [0, 3, 7],
+        "Augmented": [0, 3, 8],
+        "Diminished": [0, 3, 6],
+        // "sus4": [0, 4, 5],
+        // "sus2": [0, 2, 5]
     }
 }
 

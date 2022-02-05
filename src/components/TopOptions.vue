@@ -70,7 +70,7 @@ export default {
             this.$store.dispatch('changeDropTuning', item)
         },
         clearTab() {
-            console.log('clear tab hit')
+            this.$store.dispatch('clearTab', true)
         },
         clearAll() {
             this.$store.dispatch('clearAll', true)

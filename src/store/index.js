@@ -15,6 +15,7 @@ export default new Vuex.Store({
         dropTuningDegreeList: [-5, -4, -3, -2, -1, 0],
         selectedDropTuning: 0,
         clearAll: false,
+        clearTab: false,
 
         // this is the main tab mapping array //
         mainTabMapping: []
@@ -37,6 +38,9 @@ export default new Vuex.Store({
         },
         setTabMappingArray(state, payload) {
             state.mainTabMapping = payload
+        },
+        clearTab(state, payload) {
+            state.clearTab = payload
         },
         clearAll(state, payload) {
             state.clearAll = payload
@@ -61,6 +65,9 @@ export default new Vuex.Store({
         },
         changeTabMapping({commit}, status) {
             commit('setTabMappingArray', status)
+        },
+        clearTab({commit, status}) {
+            commit('clearTab', status)
         },
         clearAll({commit}, status) {
             commit('clearAll', status)

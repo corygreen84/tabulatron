@@ -26,15 +26,15 @@ export default {
         getCurrentStringCount() {
             return this.$store.state.seletectedNumberOfStrings
         },
-        clearAll() {
-            return this.$store.state.clearAll
-        }
+        // clearAll() {
+        //     return this.$store.state.clearAll
+        // }
     },
-    watch: {
-        clearAll() {
-            window.location.reload()
-        }
-    },
+    // watch: {
+    //     clearAll() {
+    //         window.location.reload()
+    //     }
+    // },
     methods: {
         tabEntered($event, i){
             if($event !== ''){
@@ -71,6 +71,7 @@ export default {
                     this.chord.splice(index2, 1)
                 }
             }
+            
             this.analyzingNotes()
         },
         getCurrentTuning() {
