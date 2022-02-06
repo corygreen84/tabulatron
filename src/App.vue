@@ -11,7 +11,7 @@
           </v-col>
         </v-row>
         <Key style="margin-top: 120 px; margin-left: 80px; margin-right: 80px;"/>
-        
+        {{$Scale.get("C minor").notes}}
     </v-main>
   </v-app>
 </template>
@@ -20,7 +20,6 @@
 import TopOptions from './components/TopOptions'
 import NewTabulature from './components/NewTablature.vue'
 import Key from './components/Key.vue'
-
 export default {
   name: 'App',
 
